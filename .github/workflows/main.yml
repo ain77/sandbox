@@ -3,15 +3,16 @@ on:
   push:
     branches:
       - main
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: deploy to test
-        uses: appleboy/ssh-action@v0.1.9
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          port: ${{ secrets.PORT }}
-          script: touch /home/thecubver/text
+steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Copy changed files to remote server
+      env:
+        REMOTE_HOST: ${{ secrets.HOST }}
+        REMOTE_USERNAME: ${{ secrets.USERNAME }}
+        REMOTE_PASSWORD: ${{ secrets.PASSWORD }}
+        REMOTE_DESTINATION: /home/thecubver/repositories/andrea
+      run: |
+        CHANGED_FILES=$(git diff --name-only HEAD^ HEAD)
+        scp -o StrictHostKeyChecking=no -r ${CHANGED_FILES} ${USERNAME}@${HOST}:${REMOTE_DESTINATION}
