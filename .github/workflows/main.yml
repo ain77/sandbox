@@ -17,5 +17,6 @@ jobs:
           REMOTE_PASSWORD: ${{ secrets.PASSWORD }}
           REMOTE_DESTINATION: /home/thecubver/repositories/andrea
         run: |
-          CHANGED_FILES=$(git diff --name-only HEAD^ HEAD)
+          cd /home/runner/work/sandbox/sandbox
+          CHANGED_FILES=$(test.json pippo.txt)
           scp -o StrictHostKeyChecking=no -r ${CHANGED_FILES} ${USERNAME}@${HOST}:${REMOTE_DESTINATION}
