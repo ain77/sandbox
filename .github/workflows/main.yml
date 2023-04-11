@@ -19,4 +19,4 @@ jobs:
         run: |
           cd /home/runner/work/sandbox/sandbox
           CHANGED_FILES="test.json pippo.txt"
-          scp -o StrictHostKeyChecking=no -r ${CHANGED_FILES} ${REMOTE_USERNAME}@${REMOTE_HOST}:31693${REMOTE_DESTINATION}
+          scp -p 31693 -o StrictHostKeyChecking=no -r ${CHANGED_FILES} ${REMOTE_USERNAME}@${REMOTE_HOST}:${REMOTE_DESTINATION}
