@@ -18,5 +18,5 @@ jobs:
           REMOTE_DESTINATION: /home/thecubver/repositories/andrea
         run: |
           cd /home/runner/work/sandbox/sandbox
-          CHANGED_FILES=$(test.json pippo.txt)
+          CHANGED_FILES="test.json pippo.txt"
           scp -o StrictHostKeyChecking=no -r ${CHANGED_FILES} ${USERNAME}@${HOST}:${REMOTE_DESTINATION}
